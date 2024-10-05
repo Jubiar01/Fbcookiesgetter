@@ -8,16 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script> 
     <style>
         body {
-            font-family: 'Inter', sans-serif; 
-        }
-        .gradient-bg {
-            background: linear-gradient(to right, #4338ca, #6366f1); 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right, #4338ca, #6366f1); /* Gradient background */
         }
 
         .carousel-container {
             width: 400px; /* Adjust the width as needed */
             overflow: hidden;
             position: relative;
+            margin: 20px auto; /* Center the carousel */
+            border-radius: 10px; /* Add rounded corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
         }
 
         .carousel-slide {
@@ -35,12 +36,12 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.3);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.7); /* White background with opacity */
             padding: 10px 15px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a shadow to the buttons */
         }
 
         .carousel-prev {
@@ -61,57 +62,59 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <div class="min-h-screen flex items-center justify-center">
-        <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-            <h1 class="text-3xl font-bold text-center mb-6">FB Cookies Getter</h1>
-            <p class="text-gray-700 text-center mb-6">Download our app to easily get Facebook cookies. Safe and easy to use.</p>
+<body>
+    <div class="min-h-screen flex flex-col items-center justify-center py-12"> 
+        <h1 class="text-4xl font-bold text-white text-center mb-8">FB Cookies Getter</h1> 
 
-            <div class="carousel-container mb-6">
-                <div class="carousel-slide">
-                    <img class="carousel-image" src="https://i.ibb.co/CKfq6sv/Screenshot-2024-10-05-08-28-07-261-com-example-myapplication3.jpg" alt="Screenshot 1">
-                    <img class="carousel-image" src="https://i.ibb.co/31h0N8z/Screenshot-2024-10-05-08-28-00-758-com-example-myapplication3.jpg" alt="Screenshot 2">
-                    <img class="carousel-image" src="https://i.ibb.co/yFrDpB5/Screenshot-2024-10-05-08-27-52-912-com-example-myapplication3.jpg" alt="Screenshot 3">
-                </div>
-                <button class="carousel-prev">&lt;</button>
-                <button class="carousel-next">&gt;</button>
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img class="carousel-image" src="https://i.ibb.co/gJ4CL59/Screenshot-2024-10-05-09-06-22-947-com-example-myapplication3.jpg" alt="Screenshot 1">
+                <img class="carousel-image" src="https://i.ibb.co/gZ0c7XK/Screenshot-2024-10-05-09-07-10-299-com-example-myapplication3.jpg" alt="Screenshot 2">
+                <img class="carousel-image" src="https://i.ibb.co/gWPYGwt/Screenshot-2024-10-05-09-07-27-456-com-example-myapplication3.jpg" alt="Screenshot 3">
+                <img class="carousel-image" src="https://i.ibb.co/c2hvyJ6/Screenshot-2024-10-05-09-07-48-037-com-example-myapplication3.jpg" alt="Screenshot 4">
             </div>
+            <button class="carousel-prev">&lt;</button>
+            <button class="carousel-next">&gt;</button>
+        </div>
 
-            <a href="https://github.com/Jubiar01/Fbcookiesgetter/raw/refs/heads/main/app-debug.apk" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                <i class="fas fa-download spinning-icon mr-2"></i> Download APK
-            </a>
+        <a href="https://github.com/Jubiar01/Fbcookiesgetter/raw/refs/heads/main/app-debug.apk" class="inline-block bg-blue-700 hover:bg-blue-900 text-white font-bold py-4 px-8 rounded-lg transition duration-300 mt-8"> 
+            <i class="fas fa-download spinning-icon mr-2"></i> Download APK
+        </a>
 
-            <div class="mt-8">
-                <h2 class="text-xl font-bold mb-4">Information</h2>
-                <p class="text-gray-700 mb-4">This app is designed to help developers and security researchers obtain Facebook cookies for legitimate purposes such as testing and debugging. It is crucial to use this app responsibly and ethically, and only on accounts you own or have explicit permission to access.</p>
-                <h3 class="text-lg font-bold mb-2">Safety</h3>
-                <p class="text-gray-700">The app itself does not contain any malicious code and is safe to use. However, the way you use the obtained cookies can have security implications. Always ensure you are using the app and the acquired information legally and responsibly.</p>
-            </div>
+        <div class="text-white mt-8 text-center px-8"> 
+            <h2 class="text-2xl font-bold mb-4">Information</h2>
+            <p class="mb-4">This app is designed to help developers and security researchers obtain Facebook cookies for legitimate purposes such as testing and debugging. It is crucial to use this app responsibly and ethically, and only on accounts you own or have explicit permission to access.</p>
+            <h3 class="text-xl font-bold mb-2">Safety</h3>
+            <p>The app itself does not contain any malicious code and is safe to use. However, the way you use the obtained cookies can have security implications. Always ensure you are using the app and the acquired information legally and responsibly.</p>
         </div>
     </div>
 
     <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
     <script>
         const carouselSlide = document.querySelector('.carousel-slide');
-        const carouselImages = document.querySelectorAll('.carousel-image');
+        const carouselImages = document.querySelectorAll('.carousel-image');   
+
         const prevBtn = document.querySelector('.carousel-prev');
         const nextBtn = document.querySelector('.carousel-next');
 
         let counter = 0;
         const size = carouselImages[0].clientWidth;
 
-        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        carouselSlide.style.transform = 'translateX(' + (-size * counter)   
+ + 'px)';
 
         nextBtn.addEventListener('click', () => {
             if (counter >= carouselImages.length - 1) return;
-            carouselSlide.style.transition = "transform 0.5s ease-in-out";
+            carouselSlide.style.transition = "transform   
+ 0.5s ease-in-out";
             counter++;
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
         });
 
         prevBtn.addEventListener('click', () => {
             if (counter <= 0) return;
-            carouselSlide.style.transition = "transform 0.5s ease-in-out";
+            carouselSlide.style.transition = "transform 0.5s   
+ ease-in-out";
             counter--;
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
         });
@@ -122,12 +125,14 @@
                 counter = carouselImages.length - 2;
                 carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
             }
-            if (carouselImages[counter].id === 'firstClone') {
+            if (carouselImages[counter].id   
+ === 'firstClone') {
                 carouselSlide.style.transition = "none";
                 counter = carouselImages.length - counter;
-                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+                carouselSlide.style.transform = 'translateX(' + (-size   
+ * counter) + 'px)';
             }
         });
-    </script>
+       </script>
 </body>
 </html>

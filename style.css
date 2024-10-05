@@ -7,7 +7,8 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    margin: 0; /* Remove default body margin */
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll on smaller screens */
 }
 
 @keyframes gradientAnimation {
@@ -21,6 +22,7 @@ h1 {
     color: #fff;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 2rem;
+    text-align: center; /* Ensure centered text even on smaller screens */
 }
 
 .carousel-container {
@@ -41,7 +43,8 @@ h1 {
 .carousel-image {
     width: 100%;
     height: auto;
-    object-fit: cover; /* Ensure images cover the container */
+    object-fit: cover;
+    border-radius: 10px; /* Add rounded corners to images */
 }
 
 .carousel-prev, .carousel-next {
@@ -65,9 +68,16 @@ h1 {
 .carousel-prev { left: 10px; }
 .carousel-next { right: 10px; }
 
+/* Add a hover effect to the carousel images */
+.carousel-image:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 .spinning-icon {
     animation: spin 2s linear infinite;
-    margin-right: 5px; /* Add space between icon and text */
+    margin-right: 5px;
 }
 
 @keyframes spin {
@@ -95,6 +105,7 @@ a:hover {
     text-align: center;
     max-width: 600px;
     padding: 0 1rem;
+    margin-bottom: 2rem; /* Add spacing below the info section */
 }
 
 .info-section h2 {
@@ -105,4 +116,20 @@ a:hover {
 .info-section p {
     line-height: 1.6;
     margin-bottom: 1rem;
+}
+
+/* Add a media query for responsiveness on smaller screens */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .carousel-container {
+        width: 100%;
+        border-radius: 0; /* Remove rounded corners on small screens */
+    }
+
+    .info-section h2 {
+        font-size: 1.5rem;
+    }
 }

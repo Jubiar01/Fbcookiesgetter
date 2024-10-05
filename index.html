@@ -14,6 +14,43 @@
             background: linear-gradient(to right, #4338ca, #6366f1); 
         }
 
+        .carousel-container {
+            width: 400px; /* Adjust the width as needed */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-image {
+            width: 100%; 
+            height: auto;
+        }
+
+        .carousel-prev,
+        .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
         .spinning-icon {
             animation: spin 2s linear infinite;
         }
@@ -29,6 +66,17 @@
         <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
             <h1 class="text-3xl font-bold text-center mb-6">FB Cookies Getter</h1>
             <p class="text-gray-700 text-center mb-6">Download our app to easily get Facebook cookies. Safe and easy to use.</p>
+
+            <div class="carousel-container mb-6">
+                <div class="carousel-slide">
+                    <img class="carousel-image" src="https://i.ibb.co/CKfq6sv/Screenshot-2024-10-05-08-28-07-261-com-example-myapplication3.jpg" alt="Screenshot 1">
+                    <img class="carousel-image" src="https://i.ibb.co/31h0N8z/Screenshot-2024-10-05-08-28-00-758-com-example-myapplication3.jpg" alt="Screenshot 2">
+                    <img class="carousel-image" src="https://i.ibb.co/yFrDpB5/Screenshot-2024-10-05-08-27-52-912-com-example-myapplication3.jpg" alt="Screenshot 3">
+                </div>
+                <button class="carousel-prev">&lt;</button>
+                <button class="carousel-next">&gt;</button>
+            </div>
+
             <a href="https://github.com/Jubiar01/Fbcookiesgetter/raw/refs/heads/main/app-debug.apk" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
                 <i class="fas fa-download spinning-icon mr-2"></i> Download APK
             </a>
@@ -43,5 +91,43 @@
     </div>
 
     <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
+    <script>
+        const carouselSlide = document.querySelector('.carousel-slide');
+        const carouselImages = document.querySelectorAll('.carousel-image');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+
+        let counter = 0;
+        const size = carouselImages[0].clientWidth;
+
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+
+        nextBtn.addEventListener('click', () => {
+            if (counter >= carouselImages.length - 1) return;
+            carouselSlide.style.transition = "transform 0.5s ease-in-out";
+            counter++;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (counter <= 0) return;
+            carouselSlide.style.transition = "transform 0.5s ease-in-out";
+            counter--;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        });
+
+        carouselSlide.addEventListener('transitionend', () => {
+            if (carouselImages[counter].id === 'lastClone') {
+                carouselSlide.style.transition = "none";
+                counter = carouselImages.length - 2;
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+            }
+            if (carouselImages[counter].id === 'firstClone') {
+                carouselSlide.style.transition = "none";
+                counter = carouselImages.length - counter;
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+            }
+        });
+    </script>
 </body>
 </html>

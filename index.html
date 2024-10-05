@@ -4,64 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FB Cookies Getter</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.3.2/tailwind.min.css">
-    <script src="https://cdn.tailwindcss.com"></script> 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(to right, #4338ca, #6366f1); /* Gradient background */
-        }
-
-        .carousel-container {
-            width: 400px; /* Adjust the width as needed */
-            overflow: hidden;
-            position: relative;
-            margin: 20px auto; /* Center the carousel */
-            border-radius: 10px; /* Add rounded corners */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
-        }
-
-        .carousel-slide {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-image {
-            width: 100%; 
-            height: auto;
-        }
-
-        .carousel-prev,
-        .carousel-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.7); /* White background with opacity */
-            padding: 10px 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a shadow to the buttons */
-        }
-
-        .carousel-prev {
-            left: 10px;
-        }
-
-        .carousel-next {
-            right: 10px;
-        }
-
-        .spinning-icon {
-            animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
     <div class="min-h-screen flex flex-col items-center justify-center py-12"> 
         <h1 class="text-4xl font-bold text-white text-center mb-8">FB Cookies Getter</h1> 
@@ -90,49 +33,6 @@
     </div>
 
     <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
-    <script>
-        const carouselSlide = document.querySelector('.carousel-slide');
-        const carouselImages = document.querySelectorAll('.carousel-image');   
-
-        const prevBtn = document.querySelector('.carousel-prev');
-        const nextBtn = document.querySelector('.carousel-next');
-
-        let counter = 0;
-        const size = carouselImages[0].clientWidth;
-
-        carouselSlide.style.transform = 'translateX(' + (-size * counter)   
- + 'px)';
-
-        nextBtn.addEventListener('click', () => {
-            if (counter >= carouselImages.length - 1) return;
-            carouselSlide.style.transition = "transform   
- 0.5s ease-in-out";
-            counter++;
-            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (counter <= 0) return;
-            carouselSlide.style.transition = "transform 0.5s   
- ease-in-out";
-            counter--;
-            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        });
-
-        carouselSlide.addEventListener('transitionend', () => {
-            if (carouselImages[counter].id === 'lastClone') {
-                carouselSlide.style.transition = "none";
-                counter = carouselImages.length - 2;
-                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-            }
-            if (carouselImages[counter].id   
- === 'firstClone') {
-                carouselSlide.style.transition = "none";
-                counter = carouselImages.length - counter;
-                carouselSlide.style.transform = 'translateX(' + (-size   
- * counter) + 'px)';
-            }
-        });
-       </script>
+    <script src="script.js"></script>
 </body>
 </html>
